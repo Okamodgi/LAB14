@@ -3,43 +3,36 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
 
-public class Prav {
-    public static void main(String[] args) {
-        String inputFile = "inputFile.java"; // Путь к исходному файлу с кодом
-        String outputFile = "outputFile.java"; // Путь к файлу, в который будет записан код без комментариев
-
-        try {
-            // Чтение исходного файла
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            StringBuilder codeBuilder = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                codeBuilder.append(line).append(System.lineSeparator());
-            }
-            reader.close();
-
-            // Удаление комментариев
-            String codeWithoutComments = removeComments(codeBuilder.toString());
-
-            // Запись кода без комментариев в новый файл
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
-            writer.write(codeWithoutComments);
-            writer.close();
-
-            System.out.println("Комментарии успешно удалены. Код записан в файл: " + outputFile);
-        } catch (IOException e) {
-            System.out.println("Ошибка при обработке файлов: " + e.getMessage());
+public class inputFile {
+    public static void main(String[] args) {          //Объявление метода main, который является точкой входа в программу.
+        Scanner in = new Scanner(System.in);          //Создание объекта Scanner с именем in для чтения данных из стандартного ввода.
+        System.out.print("Длина: ");                  //Вывод сообщения "Длина:" на стандартный вывод.
+        int n = in.nextInt();                         //Чтение целочисленного значения из стандартного ввода и сохранение его в переменной n.
+        int[] mass = new int[n];                      //Создание массива целых чисел с длиной n.
+        /*Мноооооооооооооооооооооооооооооооооооооооооооооооооооо
+         гоооооооооооооооооооооооооооооооооооооооооооооооо
+         оооооооооооооооооооооооооооооооооооооооооострочный комментарий*/
+        for (int i = 0; i < mass.length; i++){        //Заполнение массива числами, введенными пользователем с помощью цикла for.
+            mass[i] = in.nextInt();
         }
-    }
+        System.out.println(Arrays.toString(mass));    //Вывод массива на стандартный вывод с помощью метода Arrays.toString().
 
-    private static String removeComments(String code) {
-        // Удаление однострочных комментариев
-        code = code.replaceAll("//.*", "");
-
-        // Удаление многострочных комментариев
-        code = code.replaceAll("/\\*.*?\\*/", "");
-
-        return code;
+        boolean Sort = false;                         //Объявление логической переменной Sort и присвоение ей значения false.
+        int a;                                        //Объявление переменной целочисленного типа а.
+        while(!Sort) {                                //Запуск бесконечного цикла while.
+            Sort = true;                              //Присвоение переменной Sort значения true.
+            for (int i = 0; i < mass.length-1; i++) { //Запуск цикла for для перебора элементов массива.
+                if(mass[i] > mass[i+1]){              //Если текущий элемент больше следующего, то Sort присваивается значение false, и происходит обмен элементов с помощью переменной а.
+                    Sort = false;                     //Когда цикл for заканчивается, значение переменной Sort проверяется. Если Sort равно true, то массив отсортирован и бесконечный цикл while прерывается.
+                    a = mass[i];
+                    mass[i] = mass[i+1];
+                    mass[i+1] = a;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(mass));    //Вывод отсортированного массива на стандартный вывод с помощью метода Arrays.toString().
     }
 }
