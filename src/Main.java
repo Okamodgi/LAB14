@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        String inputFile = "src/inputFile.java"; // Путь к исходному файлу с кодом
-        String outputFile = "outputFile.java"; // Путь к файлу, в который будет записан код без комментариев
+        String inputFile = "src/inputFile"; // Путь к исходному файлу с кодом
+        String outputFile = "outputFile"; // Путь к файлу, в который будет записан код без комментариев
 
         try {
             // Чтение исходного файла
